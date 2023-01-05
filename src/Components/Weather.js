@@ -15,7 +15,7 @@ const Weather = () => {
    // console.log('coordinates:', latitude, longitude)
 
    useEffect(() => {
-      dispatch(setLoadingTrue)
+      dispatch(setLoadingTrue())
       const options = {
          method: 'GET',
          url: 'https://weatherapi-com.p.rapidapi.com/current.json',
@@ -30,11 +30,12 @@ const Weather = () => {
       axios
          .request(options)
          .then(function (response) {
-            dispatch(setLoadingFalse)
+            dispatch(setLoadingFalse())
             console.log('RESPONSE-WEATHER', response.data)
             setWeather(response.data)
          })
          .catch(function (error) {
+            dispatch(setLoadingFalse())
             console.error(error)
          })
    }, [])
